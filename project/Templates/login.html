@@ -5,16 +5,18 @@
     <h2>Login</h2>
 
     {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}</p>
+        <p class="alert alert-danger col-sm-4" role="danger">
+            <strong>Error:</strong> {{ error }}
+        </p>
     {% endif %}
 
-    <form action="{{ url_for('login') }}" method="post">
-    <dl>
-        <dt>Username:</dt>
-        <dd><input type="text" name="username" /></dd>
-        <dt>Password:</dt>
-        <dd><input type="password" name="password" /></dd>
-        <dd><input type="submit" value="Login" /></dd>
-    </dl>
+    <form action="{{ url_for('login') }}" method="post" class="form-group">
+        <dl>
+            <dt>Username:</dt>
+            <dd><input type="text" name="username" class="form-control col-sm-4" /></dd>
+            <dt>Password:</dt>
+            <dd><input type="password" name="password" class="form-control col-sm-4"  /></dd>
+            <dd><input type="submit" value="Login" class="btn btn-primary" /></dd>
+        </dl>
     </form>
 {% endblock %}

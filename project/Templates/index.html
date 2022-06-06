@@ -2,15 +2,22 @@
 
 {% block content %}
     {% if session.logged_in %}
-        <form action="{{ url_for('add_entry') }}" method="post" class="add-entry" >
-            <dl>
-            <dt>Title:</dt>
-                <dd><input type="text" size="30" name="title" /></dd>
-            <dt>Text:</dt>
-                <dd><textarea name="text" rows="5" cols="40"></textarea></dd>
-                <dd><input type="submit" value="Share" /></dd>
-            </dl>
-        </form>
+    <form action="{{ url_for('add_entry') }}" method="post" class="add-entry form-group" >
+        <dl>
+        <dt>Title:</dt>
+        <dd>
+            <input type="text" size="30" name="title" class="form-control col-sm-4" />
+        </dd>
+        <dt>Text:</dt>
+        <dd>
+            <textarea name="text" rows="5" cols="40" class="form-control col-sm-4" ></textarea>
+        </dd>
+        <br /><br />
+        <dd>
+            <input type="submit" class="btn btn-primary" value="Share" />
+        </dd>
+        </dl>
+    </form>
     {% endif %}
 
     <ul class="entries">
