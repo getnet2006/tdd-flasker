@@ -1,4 +1,5 @@
 from functools import wraps
+import os
 from pathlib import Path
 import sqlite3
 from flask import Flask, abort, flash, g, jsonify, redirect, render_template, request, session, url_for
@@ -13,7 +14,12 @@ DATABASE = "flaskr.db"
 USERNAME = "admin"
 PASSWORD = "admin"
 SECRET_KEY = "change_me"
-SQLALCHEMY_DATABASE_URI = f'sqlite:///{Path(basedir).joinpath(DATABASE)}'
+url = os.getenv('DATABASE_URL', f'sqlite:///{Path(basedir).joinpath(DATABASE)}')
+
+if url.startswith("postgres://"):
+    url = url.replace("postgres://", "postgresql+psycopg2://")
+
+SQLALCHEMY_DATABASE_URI = url
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # create the application
